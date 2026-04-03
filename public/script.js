@@ -21,7 +21,7 @@ async function useIP() {
 
     setStatus("Connecting…", "info");
     try {
-        const res = await fetch(`${BASE}/save-ip`, {
+        const res = await fetch(`/save-ip`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ ip: tvip })
@@ -41,7 +41,7 @@ async function useIP() {
 // ── Send key code ────────────────────────────────────────────
 async function sendKey(keycode) {
     try {
-        const res = await fetch(`${BASE}/send-key`, {
+        const res = await fetch(`/send-key`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ keycode })
@@ -58,7 +58,7 @@ async function sendText() {
     if (!text) return;
 
     try {
-        const res = await fetch(`${BASE}/send-text`, {
+        const res = await fetch(`/send-text`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text })
@@ -87,7 +87,7 @@ async function installApk() {
 
     setStatus("Installing APK…", "info");
     try {
-        const res = await fetch(`${BASE}/install-apk`, {
+        const res = await fetch(`/install-apk`, {
             method: "POST",
             body: formData
         });
@@ -106,7 +106,7 @@ async function installApk() {
 async function takeScreenshot() {
     setStatus("Capturing screenshot…", "info");
     try {
-        const res = await fetch(`${BASE}/screenshot`);
+        const res = await fetch(`/screenshot`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
         const blob = await res.blob();
@@ -127,7 +127,7 @@ async function rebootTV() {
     if (!confirm("Reboot the TV?")) return;
     setStatus("Rebooting…", "info");
     try {
-        const res = await fetch(`${BASE}/reboot`, { method: "POST" });
+        const res = await fetch(`/reboot`, { method: "POST" });
         if (res.ok) {
             setStatus("Reboot command sent.", "ok");
             setConnectionDot("");
