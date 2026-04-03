@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADB TV Remote</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ADB//REMOTE</h1>
+            <div class="status-indicator" id="statusDot"></div>
+        </header>
+
+        <section class="ip-section">
+            <div class="section-label">// TARGET IP</div>
+            <div class="ip-row">
+                <input type="text" id="ipinput" placeholder="192.168.x.x" autocomplete="off">
+                <button class="btn-primary" onclick="useIP()">CONNECT</button>
+            </div>
+            <div id="statusMsg" class="status-msg"></div>
+        </section>
+
+        <section class="dpad-section">
+            <div class="section-label">// NAVIGATION</div>
+            <div class="dpad">
+                <button class="dpad-btn up" onclick="sendKey(19)">&#9650;</button>
+                <div class="dpad-middle">
+                    <button class="dpad-btn left" onclick="sendKey(21)">&#9664;</button>
+                    <button class="dpad-btn ok" onclick="sendKey(23)">OK</button>
+                    <button class="dpad-btn right" onclick="sendKey(22)">&#9654;</button>
+                </div>
+                <button class="dpad-btn down" onclick="sendKey(20)">&#9660;</button>
+            </div>
+        </section>
+
+        <section class="controls-section">
+            <div class="section-label">// SYSTEM</div>
+            <div class="ctrl-grid">
+                <button class="ctrl-btn" onclick="sendKey(3)">HOME</button>
+                <button class="ctrl-btn" onclick="sendKey(4)">BACK</button>
+                <button class="ctrl-btn hi" onclick="takeScreenshot()">CAPTURE</button>
+                <button class="ctrl-btn danger" onclick="rebootTV()">REBOOT</button>
+            </div>
+        </section>
+
+        <section class="volume-section">
+            <div class="section-label">// VOLUME</div>
+            <div class="volume-row">
+                <button class="vol-btn" onclick="sendKey(25)">VOL&minus;</button>
+                <button class="vol-btn mute" onclick="sendKey(164)">MUTE</button>
+                <button class="vol-btn" onclick="sendKey(24)">VOL+</button>
+            </div>
+        </section>
+
+        <section class="text-section">
+            <div class="section-label">// TEXT INPUT</div>
+            <div class="input-row">
+                <input type="text" id="textInput" placeholder="Type something...">
+                <button class="btn-primary" onclick="sendText()">SEND</button>
+            </div>
+        </section>
+
+        <section class="apk-section">
+            <div class="section-label">// INSTALL APK</div>
+            <div class="apk-row">
+                <label class="file-label" for="apkFile">
+                    <span id="apkFileName">CHOOSE .APK</span>
+                    <input type="file" id="apkFile" accept=".apk" onchange="updateFileName(this)">
+                </label>
+                <button class="btn-primary" onclick="installApk()">INSTALL</button>
+            </div>
+        </section>
+
+        <section class="screenshot-section" id="screenshotSection" style="display:none">
+            <div class="section-label">// SCREENSHOT</div>
+            <img id="screenshotImage" alt="TV Screenshot">
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

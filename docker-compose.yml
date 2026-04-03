@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  adbremote:
+    build: .
+    container_name: adbremote
+    ports:
+      - "3000:3000"
+    network_mode: host
+    restart: unless-stopped
